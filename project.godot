@@ -102,6 +102,10 @@ interact={
  ]
 }
 
+[mono]
+
+project/assembly_name="Ritual Game"
+
 [physics]
 
 common/enable_pause_aware_picking=true
