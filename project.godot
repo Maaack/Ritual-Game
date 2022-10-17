@@ -23,11 +23,23 @@ _global_script_classes=[ {
 "class": "GameLog",
 "language": "GDScript",
 "path": "res://Scripts/GameLog.gd"
+}, {
+"base": "Resource",
+"class": "LocationData",
+"language": "GDScript",
+"path": "res://Resources/Locations/LocationData.gd"
+}, {
+"base": "TextureButton",
+"class": "LocationMarker",
+"language": "GDScript",
+"path": "res://Scenes/LocationMarker/LocationMarker.gd"
 } ]
 _global_script_class_icons={
 "AppLog": "",
 "AppSettings": "",
-"GameLog": ""
+"GameLog": "",
+"LocationData": "",
+"LocationMarker": ""
 }
 
 [application]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/BaseRitual/BaseRitual.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sourced/Icons/fast-backward-button.png" type="Texture" id=2]
+
+[node name="BaseRitual" type="Node2D"]
+script = ExtResource( 1 )
+return_to_scene = "res://Scenes/TravelScene/TravelScene.tscn"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+texture_focused = ExtResource( 2 )
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
