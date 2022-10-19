@@ -9,7 +9,6 @@ export(Array, KEYS) var sequence : Array = []
 var current_key_in_sequence = -1
 var current_boxer = BOXERS.GUARD
 
-
 func play_next_in_sequence():
 	current_key_in_sequence += 1
 	if current_key_in_sequence >= sequence.size():
@@ -37,3 +36,19 @@ func play():
 
 func _ready():
 	play()
+
+func _unhandled_input(event):
+	var arrow_node : Node2D
+	if event.is_action_pressed("move_forward"):
+		arrow_node = $PlayerBeats/UpArrow
+	elif event.is_action_pressed("move_backward"):
+		arrow_node = $PlayerBeats/DownArrow
+	elif event.is_action_pressed("move_left"):
+		arrow_node = $PlayerBeats/LeftArrow
+	elif event.is_action_pressed("move_right"):
+		arrow_node = $PlayerBeats/RightArrow
+	if arrow_node:
+		arrow_node.pulse()
+		set_process_unhandled_input(false)
+		yield(get_tree().create_timer(0.4), "timeout")
+		set_process_unhandled_input(true)
