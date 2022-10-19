@@ -18,6 +18,9 @@ static func set_first_version_opened(value : String) -> void:
 		return
 	Config.set_config(APP_LOG_SECTION, FIRST_VERSION_OPENED, value)
 
+static func get_first_version_opened() -> String:
+	return Config.get_config(APP_LOG_SECTION, FIRST_VERSION_OPENED, UNKNOWN_VERSION)
+
 static func set_last_version_opened(value : String) -> void:
 	Config.set_config(APP_LOG_SECTION, LAST_VERSION_OPENED, value)
 
