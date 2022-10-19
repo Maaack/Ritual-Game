@@ -1,5 +1,9 @@
 extends Node2D
 
+const GREAT_RANGE : float = 0.025
+const GOOD_RANGE : float = 0.075
+const MEH_RANGE : float = 0.15
+
 enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
 enum BOXERS{GUARD,PLAYER}
 
@@ -41,13 +45,13 @@ func _ready():
 func score_beat():
 	var delta = $AudioStreamConductor.get_time_to_closest_beat()
 	$TimeToBeatLabel.text = "%0.5f" % delta
-	if delta < 0.025:
+	if delta < GREAT_RANGE:
 		score += 100
 		$BigFeedback.text = "Great"
-	elif delta < 0.075:
+	elif delta < GOOD_RANGE:
 		score += 25
 		$BigFeedback.text = "Good"
-	elif delta < 0.15:
+	elif delta < MEH_RANGE:
 		score += 10
 		$BigFeedback.text = "Meh"
 	else:
