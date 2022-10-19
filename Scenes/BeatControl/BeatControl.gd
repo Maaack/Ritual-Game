@@ -3,8 +3,8 @@ extends Node2D
 enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
 enum BOXERS{GUARD,PLAYER}
 
-export(int) var modulo_beats : int = 2
 export(Array, KEYS) var sequence : Array = []
+export(int) var modulo_beats : int = 1
 
 var current_key_in_sequence : int = -1
 var current_boxer : int = BOXERS.GUARD
@@ -74,3 +74,6 @@ func _unhandled_input(event):
 		set_process_unhandled_input(false)
 		yield(get_tree().create_timer(0.4), "timeout")
 		_refresh_input()
+
+func _on_AudioStreamConductor_beat_lead_up(total):
+	$NoteTrack.drop_note()

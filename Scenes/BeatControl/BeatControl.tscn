@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/ArrowElement/ArrowElement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/AudioStreamConductor/AudioStreamConductor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Original/Music/Ritual_-_Marketplace_Music_Demo.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/BeatControl/BeatControl.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sourced/Fonts/zero-hour/zero hour.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scenes/NoteTrack/NoteTrack.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -18,8 +19,7 @@ sequence = [ 1, 2, 3, 4, 3, 4, 0, 0, 1, 1, 0, 0 ]
 [node name="AudioStreamConductor" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 3 )
 bus = "Music"
-beats_per_minute = 120
-beats_per_measure = 2
+beats_per_minute = 60
 
 [node name="GuardBeats" type="Node2D" parent="."]
 position = Vector2( 263, 204 )
@@ -66,10 +66,10 @@ text = "Time to beat:
 Score:"
 
 [node name="BigFeedback" type="Label" parent="."]
-margin_left = 569.0
-margin_top = 61.0
-margin_right = 932.0
-margin_bottom = 138.0
+margin_left = 574.0
+margin_top = 68.0
+margin_right = 937.0
+margin_bottom = 145.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 align = 1
@@ -90,4 +90,8 @@ margin_bottom = 303.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 2
 
+[node name="NoteTrack" parent="." instance=ExtResource( 6 )]
+position = Vector2( 675, 204 )
+
 [connection signal="beat" from="AudioStreamConductor" to="." method="_on_AudioStreamConductor_beat"]
+[connection signal="beat_lead_up" from="AudioStreamConductor" to="." method="_on_AudioStreamConductor_beat_lead_up"]
