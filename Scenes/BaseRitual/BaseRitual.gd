@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name BaseRitual
+
 # Logic for all ritual types
 export(String, FILE, "*.tscn") var return_to_scene : String
 
