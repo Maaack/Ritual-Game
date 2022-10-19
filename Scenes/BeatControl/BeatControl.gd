@@ -3,11 +3,12 @@ extends Node2D
 enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
 enum BOXERS{GUARD,PLAYER}
 
-export(int) var modulo_beats = 2
+export(int) var modulo_beats : int = 2
 export(Array, KEYS) var sequence : Array = []
 
-var current_key_in_sequence = -1
-var current_boxer = BOXERS.GUARD
+var current_key_in_sequence : int = -1
+var current_boxer : int = BOXERS.GUARD
+var score : int = 0
 
 func play_next_in_sequence():
 	current_key_in_sequence += 1
@@ -37,6 +38,26 @@ func play():
 func _ready():
 	play()
 
+func score_beat():
+	var delta = $AudioStreamConductor.get_time_to_closest_beat()
+	$TimeToBeatLabel.text = "%0.5f" % delta
+	if delta < 0.025:
+		score += 100
+		$BigFeedback.text = "Great"
+	elif delta < 0.075:
+		score += 25
+		$BigFeedback.text = "Good"
+	elif delta < 0.15:
+		score += 10
+		$BigFeedback.text = "Meh"
+	else:
+		$BigFeedback.text = "What?"
+	$ScoreLabel.text = "%d" % score
+
+func _refresh_input():
+	$BigFeedback.text = ""
+	set_process_unhandled_input(true)
+
 func _unhandled_input(event):
 	var arrow_node : Node2D
 	if event.is_action_pressed("move_forward"):
@@ -49,6 +70,7 @@ func _unhandled_input(event):
 		arrow_node = $PlayerBeats/RightArrow
 	if arrow_node:
 		arrow_node.pulse()
+		score_beat()
 		set_process_unhandled_input(false)
 		yield(get_tree().create_timer(0.4), "timeout")
-		set_process_unhandled_input(true)
+		_refresh_input()
