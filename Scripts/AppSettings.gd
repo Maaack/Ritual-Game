@@ -31,6 +31,8 @@ static func set_action_scancode(action_name : String, scancode : int) -> void:
 	Config.set_config(INPUT_SECTION, action_name, scancode)
 
 static func get_input_actions() -> Array:
+	if not Config.has_section(INPUT_SECTION):
+		return []
 	return Config.get_section_keys(INPUT_SECTION)
 
 static func get_input_event_scancode(action_event : InputEventKey) -> int:
@@ -60,7 +62,7 @@ static func set_inputs_from_config() -> void:
 
 static func init_input_config() -> void:
 	if not Config.has_section(INPUT_SECTION):
-		reset_input_config()
+		# reset_input_config()
 		return
 	set_inputs_from_config()
 
@@ -116,7 +118,7 @@ static func set_audio_from_config():
 
 static func init_audio_config() -> void:
 	if not Config.has_section(AUDIO_SECTION):
-		reset_audio_config()
+		# reset_audio_config()
 		return
 	set_audio_from_config()
 
@@ -136,7 +138,7 @@ static func set_video_from_config() -> void:
 
 static func init_video_config() -> void:
 	if not Config.has_section(VIDEO_SECTION):
-		reset_video_config()
+		# reset_video_config()
 		return
 	set_video_from_config()
 

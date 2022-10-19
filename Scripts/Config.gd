@@ -21,6 +21,10 @@ func load_config_file() -> void:
 		if save_error:
 			print("save config file failed with error %d" % save_error)
 
+func clear_config_file() -> void:
+	load_config_file()
+	config_file.clear()
+
 func set_config(section: String, key: String, value) -> void:
 	load_config_file()
 	config_file.set_value(section, key, value)
