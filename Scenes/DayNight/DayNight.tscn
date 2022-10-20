@@ -5,3 +5,5 @@
 [node name="DayNightCycle" type="CanvasModulate"]
 color = Color( 0.0352941, 0.113725, 0.227451, 1 )
 script = ExtResource( 1 )
+time_mode = 0
+time_scale = 0.25

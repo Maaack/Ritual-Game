@@ -42,7 +42,7 @@ func _report_beat():
 		last_beat_lead_up = next_beat
 		emit_signal("beat_lead_up", last_beat_lead_up)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if playing:
 		song_position = get_playback_position() + AudioServer.get_time_since_last_mix()
 		song_position -= AudioServer.get_output_latency()

@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	match time_mode:
 		TimeMode.INGAME:
 			self.time += delta * time_scale
-			value = (sin(time) + 1) / 2	# 0 is midnight, 1 is high noon
+			value = (cos(time) + 1) / 2	 # Changed to cosine for slight offset. starting at daytime
 		TimeMode.STATIC:
 			value = static_time / 100.0
 		TimeMode.SYSTEM:

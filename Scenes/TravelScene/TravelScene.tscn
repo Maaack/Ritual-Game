@@ -48,5 +48,3 @@ margin_bottom = -349.0
 location_data = ExtResource( 7 )
 
 [node name="DayNightCycle" parent="." instance=ExtResource( 8 )]
-time_mode = 0
-time_scale = 0.6

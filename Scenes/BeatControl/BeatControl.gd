@@ -18,8 +18,7 @@ func play_next_in_sequence():
 	current_key_in_sequence += 1
 	if current_key_in_sequence >= sequence.size():
 		current_key_in_sequence = 0
-	var next_key = sequence[current_key_in_sequence]
-	var container_node : Node2D
+	var next_key = sequence[current_key_in_sequence]	
 	match(next_key):
 		KEYS.UP:
 			$GuardBeats/UpArrow.pulse()
@@ -32,7 +31,7 @@ func play_next_in_sequence():
 		KEYS.WAIT:
 			pass
 
-func _on_AudioStreamConductor_beat(total, in_measure):
+func _on_AudioStreamConductor_beat(total, _in_measure):
 	if total % modulo_beats == 0:
 		play_next_in_sequence()
 
@@ -79,5 +78,5 @@ func _unhandled_input(event):
 		yield(get_tree().create_timer(0.4), "timeout")
 		_refresh_input()
 
-func _on_AudioStreamConductor_beat_lead_up(total):
+func _on_AudioStreamConductor_beat_lead_up(_total):
 	$NoteTrack.drop_note()
