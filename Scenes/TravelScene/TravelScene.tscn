@@ -19,7 +19,6 @@ __meta__ = {
 }
 
 [node name="DayNightCycle" parent="." instance=ExtResource( 8 )]
-time_mode = 0
 time_scale = 0.6
 
 [node name="Bouncer" parent="." instance=ExtResource( 2 )]

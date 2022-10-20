@@ -4,7 +4,7 @@ extends Label
 func _ready():
 	pass 
 
-func _process(delta):
+func _process(_delta):
 	if $Timer.time_left > 0:
 		text = $Timer.time_left
 

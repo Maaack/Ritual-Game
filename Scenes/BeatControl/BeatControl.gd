@@ -72,7 +72,7 @@ func _record_wait_if_no_input():
 	played_sequence.append(KEYS.WAIT)
 	_evaluate_played_sequence()
 
-func _on_AudioStreamConductor_beat(total, _in_measure):
+func _on_AudioStreamConductor_beat(total, in_measure):
 	if total % modulo_beats == 0:
 		play_next_in_sequence()
 	if in_measure == 0 and is_guard_waiting():
