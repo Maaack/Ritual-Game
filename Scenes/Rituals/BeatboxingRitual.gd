@@ -9,3 +9,5 @@ func dialog_listener(string):
 	match string:
 		"return":
 			SceneLoader.load_scene(return_to_scene)
+		"beatbox":
+			$BeatControl.play()

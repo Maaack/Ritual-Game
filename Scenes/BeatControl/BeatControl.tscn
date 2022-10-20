@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/ArrowElement/ArrowElement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/AudioStreamConductor/AudioStreamConductor.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/BeatControl/BeatControl.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sourced/Fonts/zero-hour/zero hour.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scenes/NoteTrack/NoteTrack.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/Stages/CopyMe1.tres" type="Resource" id=7]
+[ext_resource path="res://Resources/Stages/CopyMe2.tres" type="Resource" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -14,7 +16,7 @@ font_data = ExtResource( 5 )
 
 [node name="BeatControl" type="Node2D"]
 script = ExtResource( 4 )
-sequence = [ 1, 2, 3, 4, 3, 4, 0, 0, 1, 1, 0, 0 ]
+stages = [ ExtResource( 7 ), ExtResource( 8 ) ]
 
 [node name="AudioStreamConductor" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 3 )
@@ -70,6 +72,15 @@ margin_left = 574.0
 margin_top = 68.0
 margin_right = 937.0
 margin_bottom = 145.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+align = 1
+
+[node name="StageFeedback" type="Label" parent="."]
+margin_left = 225.0
+margin_top = 343.0
+margin_right = 814.0
+margin_bottom = 420.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 align = 1
