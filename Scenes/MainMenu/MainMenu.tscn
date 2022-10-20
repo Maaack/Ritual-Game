@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MainMenu/MainMenuButtons.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/OptionsMenu/MasterOptionsMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Themes/MainMenuTheme.tres" type="Theme" id=4]
 [ext_resource path="res://Scenes/UI/SoundButton/SoundButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Original/Music/Ritual_-_Main_Theme_Demo_1.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/Credits/Credits.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=5]
@@ -417,6 +418,11 @@ anchor_bottom = 1.0
 margin_top = -40.0
 margin_right = 62.0
 text = "Back"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
 
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/TutorialButton" to="." method="_on_TutorialButton_pressed"]
