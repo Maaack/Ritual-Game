@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Resources/Stages/StageData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+guard_sequence = [ 4, 4, 3, 0, 0, 3 ]
+challenger_sequence = [ 4, 4, 3, 0, 0, 3 ]
