@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Original/Textures/world-map.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/LocationMarker/LocationMarker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Locations/BeatboxingBouncer.tres" type="Resource" id=3]
-[ext_resource path="res://Resources/Locations/HandshakeBouncer.tres" type="Resource" id=4]
+[ext_resource path="res://Resources/Locations/BeatboxingGuard.tres" type="Resource" id=4]
 [ext_resource path="res://Scenes/TravelScene/TravelScene.gd" type="Script" id=5]
-[ext_resource path="res://Resources/Locations/CommunalHymn.tres" type="Resource" id=6]
-[ext_resource path="res://Resources/Locations/TeaCeremony.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/DayNight/DayNight.tscn" type="PackedScene" id=8]
 
 [node name="TravelScene" type="Node2D"]
@@ -24,46 +22,24 @@ __meta__ = {
 time_mode = 0
 time_scale = 0.6
 
-[node name="Beatbox" parent="." instance=ExtResource( 2 )]
+[node name="Bouncer" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 354.0
-margin_top = 18.0
-margin_right = 418.0
-margin_bottom = 82.0
+margin_left = 324.0
+margin_top = 69.0
+margin_right = 388.0
+margin_bottom = 133.0
 location_data = ExtResource( 3 )
 
-[node name="Handshake" parent="." instance=ExtResource( 2 )]
+[node name="Guard" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 685.0
-margin_top = 327.0
-margin_right = 749.0
-margin_bottom = 391.0
+margin_left = 697.0
+margin_top = 78.0
+margin_right = 761.0
+margin_bottom = 142.0
 location_data = ExtResource( 4 )
-
-[node name="Hymn" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 893.0
-margin_top = 127.0
-margin_right = 957.0
-margin_bottom = 191.0
-location_data = ExtResource( 6 )
-
-[node name="TeaTime" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 97.0
-margin_top = 99.0
-margin_right = 161.0
-margin_bottom = 163.0
-location_data = ExtResource( 7 )
