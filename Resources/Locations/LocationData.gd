@@ -1,5 +1,5 @@
-extends Resource
 class_name LocationData
+extends Resource
 
 export(String) var name : String
 export(String, MULTILINE) var description : String

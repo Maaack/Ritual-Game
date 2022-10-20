@@ -98,6 +98,11 @@ _global_script_classes=[ {
 "class": "LocationMarker",
 "language": "GDScript",
 "path": "res://Scenes/LocationMarker/LocationMarker.gd"
+}, {
+"base": "Resource",
+"class": "StageData",
+"language": "GDScript",
+"path": "res://Resources/Stages/StageData.gd"
 } ]
 _global_script_class_icons={
 "AppLog": "",
@@ -117,7 +122,8 @@ _global_script_class_icons={
 "GameLog": "",
 "HistoryRow": "",
 "LocationData": "",
-"LocationMarker": ""
+"LocationMarker": "",
+"StageData": ""
 }
 
 [application]
