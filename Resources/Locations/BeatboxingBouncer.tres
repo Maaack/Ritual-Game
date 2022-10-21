@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 name = "Beatboxing Bouncer"
 description = "Some extra description"
-ritual_scene_path = "res://Scenes/Rituals/BeatboxingRitual.tscn"
+ritual_scene_path = "res://Scenes/Rituals/BeatboxingBouncerRitual.tscn"

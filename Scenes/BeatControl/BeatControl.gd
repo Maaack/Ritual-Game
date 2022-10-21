@@ -1,6 +1,6 @@
 extends Node2D
 
-signal stage_completed(stage)
+signal round_completed(round_number)
 signal challenge_completed
 
 const GREAT_RANGE : float = 0.025
@@ -13,28 +13,35 @@ enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
 enum BOXERS{GUARD,PLAYER}
 
 export(Array, Resource) var stages : Array = []
+export(Array, Resource) var rounds : Array = []
 export(int) var modulo_beats : int = 1
 
-var current_stage : int = 0
+var current_round_iter : int = 0
 var current_key_in_guard_sequence : int = 0
 var current_boxer : int = BOXERS.GUARD
 var score : int = 0
 var guard_waiting : int = 0
 var played_sequence : Array = []
+var active : bool = false
 
-func _complete_stage() -> void:
-	emit_signal("stage_completed", current_stage)
-	current_stage += 1
-	if current_stage >= stages.size():
+func _complete_round() -> void:
+	emit_signal("round_completed", current_round_iter)
+	current_round_iter += 1
+	if current_round_iter >= rounds.size():
 		emit_signal("challenge_completed")
-		current_stage = 0
+		current_round_iter = 0
+		active = false
 
-func _get_current_stage_data():
-	return stages[current_stage]
+func _get_current_round_data():
+	return rounds[current_round_iter]
 
 func _reset_guard():
 	guard_waiting = GUARD_PAUSE_MEASURES
 	current_key_in_guard_sequence = 0
+
+func reset():
+	_reset_guard()
+	current_round_iter = 0
 
 func is_guard_waiting():
 	return guard_waiting > 0
@@ -42,10 +49,10 @@ func is_guard_waiting():
 func play_next_in_sequence():
 	if is_guard_waiting():
 		return
-	var stage = _get_current_stage_data()
-	if not stage is RoundData:
+	var round_data = _get_current_round_data()
+	if not round_data is RoundData:
 		return
-	var sequence : Array = stage.guard_sequence
+	var sequence : Array = round_data.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
 	current_key_in_guard_sequence += 1
 	var container_node : Node2D
@@ -72,7 +79,14 @@ func _record_wait_if_no_input():
 	played_sequence.append(KEYS.WAIT)
 	_evaluate_played_sequence()
 
+func _on_AudioStreamConductor_beat_lead_up(total):
+	if not active:
+		return
+	$NoteTrack.drop_note()
+
 func _on_AudioStreamConductor_beat(total, in_measure):
+	if not active:
+		return
 	if total % modulo_beats == 0:
 		play_next_in_sequence()
 	if in_measure == 0 and is_guard_waiting():
@@ -99,27 +113,27 @@ func score_beat():
 	$ScoreLabel.text = "%d" % score
 
 func _refresh_input():
-	$StageFeedback.text = ""
+	$RoundFeedback.text = ""
 	$BigFeedback.text = ""
 	set_process_unhandled_input(true)
 
 func _challenger_succeeded():
-	_complete_stage()
-	$StageFeedback.text = "Scripture"
+	_complete_round()
+	$RoundFeedback.text = "Scripture"
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
 
 func _challenger_failed():
-	$StageFeedback.text = "Blasphemy"
+	$RoundFeedback.text = "Blasphemy"
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
 
 func _evaluate_played_sequence():
 	set_process_unhandled_input(false)
-	var stage = _get_current_stage_data()
-	if not stage is RoundData:
+	var round_data = _get_current_round_data()
+	if not round_data is RoundData:
 		return
-	var sequence : Array = stage.challenger_sequence
+	var sequence : Array = round_data.challenger_sequence
 	if played_sequence.size() == sequence.size():
 		_reset_guard()
 		yield(get_tree().create_timer(1.0), "timeout")
@@ -152,6 +166,3 @@ func _unhandled_input(event):
 		played_sequence.append(record_key)
 		score_beat()
 		_evaluate_played_sequence()
-
-func _on_AudioStreamConductor_beat_lead_up(total):
-	$NoteTrack.drop_note()

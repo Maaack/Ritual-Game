@@ -24,13 +24,13 @@
 			"character": "character-1666059727.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ey! Just where do you think you're going, eh?"
+			"text": "Alright alright. You ain't bad."
 		},
 		{
 			"character": "character-1666060180.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Uh...I was going to head inside."
+			"text": "Am I good?"
 		},
 		{
 			"character": "character-1666059727.json",
@@ -39,7 +39,7 @@
 
 			],
 			"portrait": "",
-			"question": "You want in? You gotta show me what you got. You know the deal..."
+			"question": "Got to keep checking you first."
 		},
 		{
 			"choice": "Beatbox",
@@ -77,7 +77,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1666059858.json",
-		"name": "BeatboxBouncerRitual1-1"
+		"file": "timeline-1666319295.json",
+		"name": "BeatboxBouncerRitual1-2"
 	}
 }
