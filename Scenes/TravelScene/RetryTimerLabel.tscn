@@ -3,15 +3,14 @@
 [ext_resource path="res://Scenes/TravelScene/RetryTimerLabel.gd" type="Script" id=1]
 
 [node name="RetryTimerLabel" type="Label"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -8.0
-margin_top = -13.0
-margin_right = 52.0
-margin_bottom = 12.0
+margin_left = -10.0
+margin_top = -15.0
+margin_right = 50.0
+margin_bottom = 10.0
 align = 1
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 24.0
-one_shot = true

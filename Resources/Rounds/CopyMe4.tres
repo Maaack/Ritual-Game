@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+guard_track = ""
+challenger_track = ""
 guard_sequence = [ 3, 4, 3, 0, 1, 4, 3, 0 ]
 challenger_sequence = [ 3, 4, 3, 0, 3, 4, 3, 0 ]

@@ -19,6 +19,7 @@ __meta__ = {
 }
 
 [node name="DayNightCycle" parent="." instance=ExtResource( 8 )]
+color = Color( 0.396078, 0.498039, 0.639216, 1 )
 time_scale = 0.6
 
 [node name="Bouncer" parent="." instance=ExtResource( 2 )]

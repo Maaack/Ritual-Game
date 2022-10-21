@@ -12,7 +12,7 @@ func _ready():
 
 func start_dialogic_timeline(timeline : String):
 	var dialog = Dialogic.start(timeline)
-	dialog.connect("dialogic_signal", self, "dialog_listener")
+	dialog.connect("dialogic_signal", self, "dialog_listener")	
 	add_child(dialog)
 
 func get_current_stage():
@@ -43,11 +43,16 @@ func _complete_stage():
 
 func dialog_listener(string):
 	match string:
-		"return":
-			RitualCooldownManager.start_cooldown(RitualCooldownManager.BEATBOX)
+		"return":			
 			SceneLoader.load_scene(return_to_scene)
 		"beatbox":
 			_start_challenge()
+
+# Override to call cooldown for this specific ritual
+func _on_TextureButton_pressed():
+	print("Bouncer Cooldown triggered")
+	RitualCooldownManager.start_cooldown(RitualCooldownManager.BOUNCER)
+	._on_TextureButton_pressed()
 
 func _on_BeatControl_challenge_completed():
 	_complete_stage()

@@ -1,13 +1,16 @@
 extends Node
 
-var beatbox_ritual_cooldown = false
+var bouncer_cooldown = false
+var guard_cooldown = false
 
-enum { BEATBOX }
+enum { BOUNCER, GUARD }
 
 func _ready():
 	pass # Replace with function body.
 
 func start_cooldown(ritual_type):
 	match ritual_type:
-		BEATBOX:
-			print("Beatbox Cooldown Started!")
+		BOUNCER:
+			bouncer_cooldown = true;
+		GUARD:
+			guard_cooldown = true;
