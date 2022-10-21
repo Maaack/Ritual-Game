@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Resources/Rounds/RoundData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Guard Beat 2 - ogg.ogg" type="AudioStream" id=2]
 
 [resource]
 script = ExtResource( 1 )
-guard_track = "res://Assets/Original/Beats/Ritual - BB - Guard Beat 2 - ogg.ogg"
-challenger_track = "res://Assets/Original/Beats/Ritual - BB - Player Beat 2 - ogg.ogg"
+guard_stream = ExtResource( 2 )
 guard_sequence = [ 1, 2, 1, 2, 2, 1 ]
 challenger_sequence = [ 1, 2, 1, 2, 2, 1 ]
+challenger_streams = [  ]

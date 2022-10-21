@@ -35,7 +35,7 @@ func get_time_to_next_beat():
 func _report_beat():
 	var prev_beat : int = get_prev_beat()
 	var next_beat : int = get_next_beat()
-	if song_position_in_beats < prev_beat:
+	if song_position_in_beats < prev_beat or prev_beat == 0:
 		song_position_in_beats = prev_beat
 		emit_signal("beat", song_position_in_beats, song_position_in_beats % beats_per_measure)
 	elif get_time_to_next_beat() < beat_lead_time and last_beat_lead_up != next_beat:

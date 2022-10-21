@@ -19,9 +19,11 @@ bus = "Music"
 
 [node name="GuardSFX" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, 259 )
+bus = "SFX"
 
 [node name="PlayerSFX" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 1023, 259 )
+bus = "SFX"
 
 [node name="GuardBeats" type="Node2D" parent="."]
 position = Vector2( 263, 204 )

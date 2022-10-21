@@ -39,7 +39,7 @@ func _reset_guard():
 	current_key_in_guard_sequence = 0
 	var round_data = _get_current_round_data()
 	if round_data is RoundData:
-		$GuardSFX.stream = load(round_data.guard_track)
+		$GuardSFX.stream = round_data.guard_stream
 
 func reset():
 	_reset_guard()
@@ -88,7 +88,7 @@ func _record_wait_if_no_input():
 	if not is_processing_unhandled_key_input():
 		return
 	yield(get_tree().create_timer(INPUT_HOLD/2.0), "timeout")
-	if not is_processing_unhandled_key_input() or played_sequence.size() == 0:
+	if (not is_processing_unhandled_key_input()) or played_sequence.size() == 0:
 		return
 	played_sequence.append(KEYS.WAIT)
 	_evaluate_played_sequence()
@@ -156,7 +156,6 @@ func _evaluate_played_sequence():
 	if played_sequence.size() == sequence.size():
 		set_process_unhandled_key_input(false)
 		var final_played_sequence = played_sequence.duplicate()
-		played_sequence.clear()
 		print(final_played_sequence)
 		_reset_guard()
 		current_boxer = BOXERS.NONE
