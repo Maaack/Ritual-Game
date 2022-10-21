@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+guard_track = "res://Assets/Original/Beats/Ritual - BB - Guard Beat 4 - ogg.ogg"
+challenger_track = "res://Assets/Original/Beats/Ritual - BB - Player Beat 4 - ogg.ogg"
 guard_sequence = [ 3, 4, 3, 0, 1, 4, 3, 0 ]
-challenger_sequence = [ 3, 4, 3, 0, 3, 4, 3, 0 ]
+challenger_sequence = [ 3, 4, 3, 0, 1, 4, 3, 0 ]

@@ -7,10 +7,10 @@ const GREAT_RANGE : float = 0.025
 const GOOD_RANGE : float = 0.075
 const MEH_RANGE : float = 0.15
 const INPUT_HOLD : float = 0.4
-const GUARD_PAUSE_MEASURES : int = 2
+const GUARD_PAUSE_MEASURES : int = 1
 
 enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
-enum BOXERS{GUARD,PLAYER}
+enum BOXERS{NONE,GUARD,CHALLENGER}
 
 export(Array, Resource) var rounds : Array = []
 export(int) var modulo_beats : int = 1
@@ -37,20 +37,34 @@ func _get_current_round_data():
 func _reset_guard():
 	guard_waiting = GUARD_PAUSE_MEASURES
 	current_key_in_guard_sequence = 0
+	var round_data = _get_current_round_data()
+	if round_data is RoundData:
+		$GuardSFX.stream = load(round_data.guard_track)
 
 func reset():
 	_reset_guard()
 	current_round_iter = 0
+	current_boxer = BOXERS.NONE
+	yield(get_tree().create_timer(INPUT_HOLD),"timeout")
+	current_boxer = BOXERS.GUARD
+
+func is_guard_boxing():
+	return current_boxer == BOXERS.GUARD
+
+func is_challenger_boxing():
+	return current_boxer == BOXERS.CHALLENGER
 
 func is_guard_waiting():
 	return guard_waiting > 0
 
 func play_next_in_sequence():
-	if is_guard_waiting():
+	if not is_guard_boxing():
 		return
 	var round_data = _get_current_round_data()
 	if not round_data is RoundData:
 		return
+	if not $GuardSFX.playing:
+		$GuardSFX.play()
 	var sequence : Array = round_data.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
 	current_key_in_guard_sequence += 1
@@ -68,31 +82,38 @@ func play_next_in_sequence():
 			pass
 	if current_key_in_guard_sequence >= sequence.size():
 		_reset_guard()
+		current_boxer = BOXERS.CHALLENGER
 
 func _record_wait_if_no_input():
-	if not is_processing_unhandled_input():
+	if not is_processing_unhandled_key_input():
 		return
 	yield(get_tree().create_timer(INPUT_HOLD/2.0), "timeout")
-	if not is_processing_unhandled_input() or played_sequence.size() == 0:
+	if not is_processing_unhandled_key_input() or played_sequence.size() == 0:
 		return
 	played_sequence.append(KEYS.WAIT)
 	_evaluate_played_sequence()
 
 func _on_AudioStreamConductor_beat_lead_up(total):
-	if not active:
+	if not active or not is_challenger_boxing():
 		return
 	$NoteTrack.drop_note()
 
 func _on_AudioStreamConductor_beat(total, in_measure):
 	if not active:
 		return
-	if total % modulo_beats == 0:
-		play_next_in_sequence()
-	if in_measure == 0 and is_guard_waiting():
-		guard_waiting -= 1
-	_record_wait_if_no_input()
+	if is_challenger_boxing():
+		_record_wait_if_no_input()
+	if is_guard_boxing():
+		if in_measure == 0 and is_guard_waiting():
+			guard_waiting -= 1
+		if total % modulo_beats == 0:
+			play_next_in_sequence()
 
-func play():
+func play(audio_stream : AudioStream, beats_per_minute : int, beats_per_measure : int, track_offset : float = 0.0):
+	$AudioStreamConductor.stream = audio_stream
+	$AudioStreamConductor.beats_per_minute = beats_per_minute
+	$AudioStreamConductor.beats_per_measure = beats_per_measure
+	$AudioStreamConductor.track_offset = track_offset
 	$AudioStreamConductor.play()
 
 func score_beat():
@@ -114,7 +135,7 @@ func score_beat():
 func _refresh_input():
 	$RoundFeedback.text = ""
 	$BigFeedback.text = ""
-	set_process_unhandled_input(true)
+	set_process_unhandled_key_input(true)
 
 func _challenger_succeeded():
 	_complete_round()
@@ -128,24 +149,32 @@ func _challenger_failed():
 	_refresh_input()
 
 func _evaluate_played_sequence():
-	set_process_unhandled_input(false)
 	var round_data = _get_current_round_data()
 	if not round_data is RoundData:
 		return
 	var sequence : Array = round_data.challenger_sequence
 	if played_sequence.size() == sequence.size():
+		set_process_unhandled_key_input(false)
+		var final_played_sequence = played_sequence.duplicate()
+		played_sequence.clear()
+		print(final_played_sequence)
 		_reset_guard()
+		current_boxer = BOXERS.NONE
 		yield(get_tree().create_timer(1.0), "timeout")
-		if played_sequence.hash() == sequence.hash():
+		if final_played_sequence.hash() == sequence.hash():
 			_challenger_succeeded()
 		else:
 			_challenger_failed()
 		played_sequence.clear()
+		current_boxer = BOXERS.GUARD
 	else:
 		yield(get_tree().create_timer(INPUT_HOLD), "timeout")
 		_refresh_input()
 
-func _unhandled_input(event):
+func _unhandled_key_input(event):
+	if is_guard_boxing():
+		current_boxer = BOXERS.CHALLENGER
+		return
 	var arrow_node : Node2D
 	var record_key : int
 	if event.is_action_pressed("move_forward"):
@@ -164,4 +193,5 @@ func _unhandled_input(event):
 		arrow_node.pulse()
 		played_sequence.append(record_key)
 		score_beat()
+		set_process_unhandled_key_input(false)
 		_evaluate_played_sequence()
