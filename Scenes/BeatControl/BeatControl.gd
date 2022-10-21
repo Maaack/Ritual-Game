@@ -81,7 +81,6 @@ func play_next_in_sequence():
 		KEYS.WAIT:
 			pass
 	if current_key_in_guard_sequence >= sequence.size():
-		_reset_guard()
 		current_boxer = BOXERS.CHALLENGER
 
 func _record_wait_if_no_input():
@@ -90,6 +89,7 @@ func _record_wait_if_no_input():
 	yield(get_tree().create_timer(INPUT_HOLD/2.0), "timeout")
 	if (not is_processing_unhandled_key_input()) or played_sequence.size() == 0:
 		return
+	_play_challenger_sound()
 	played_sequence.append(KEYS.WAIT)
 	_check_sequence_after_waiting()
 
@@ -157,7 +157,6 @@ func _evaluate_full_played_sequence():
 	var round_data = _get_current_round_data()
 	var final_played_sequence = played_sequence.duplicate()
 	print(final_played_sequence)
-	_reset_guard()
 	current_boxer = BOXERS.NONE
 	yield(get_tree().create_timer(1.0), "timeout")
 	if final_played_sequence.hash() == round_data.challenger_sequence.hash():
@@ -165,6 +164,7 @@ func _evaluate_full_played_sequence():
 	else:
 		_challenger_failed()
 	played_sequence.clear()
+	_reset_guard()
 	current_boxer = BOXERS.GUARD
 
 func _check_sequence_after_waiting():
@@ -177,6 +177,15 @@ func _check_sequence_after_input():
 	else:
 		yield(get_tree().create_timer(INPUT_HOLD), "timeout")
 		_refresh_input()
+
+func _play_challenger_sound():
+	var round_data = _get_current_round_data()
+	var current_note : int = played_sequence.size()
+	if current_note >= round_data.challenger_streams.size():
+		return
+	var audio_stream = round_data.challenger_streams[current_note]
+	$ChallengerSFX.stream = audio_stream
+	$ChallengerSFX.play()
 
 func _unhandled_key_input(event):
 	if is_guard_boxing():
@@ -198,6 +207,7 @@ func _unhandled_key_input(event):
 		record_key = KEYS.RIGHT
 	if arrow_node:
 		arrow_node.pulse()
+		_play_challenger_sound()
 		played_sequence.append(record_key)
 		score_beat()
 		set_process_unhandled_key_input(false)

@@ -21,7 +21,7 @@ bus = "Music"
 position = Vector2( 0, 259 )
 bus = "SFX"
 
-[node name="PlayerSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="ChallengerSFX" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 1023, 259 )
 bus = "SFX"
 
