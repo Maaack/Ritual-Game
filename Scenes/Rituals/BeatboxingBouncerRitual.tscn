@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Rituals/BaseBeatboxingRitual.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Stages/Bouncer1-2.tres" type="Resource" id=2]
 [ext_resource path="res://Resources/Stages/Bouncer1-1.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/Original/Music/Ritual - Marketplace Music - ogg.ogg" type="AudioStream" id=4]
 
 [node name="BeatboxingBouncerRitual" instance=ExtResource( 1 )]
 stages = [ ExtResource( 3 ), ExtResource( 2 ) ]
+music_stream = ExtResource( 4 )

@@ -3,11 +3,15 @@ extends BaseRitual
 signal ritual_completed
 
 export(Array, Resource) var stages : Array = []
+export(AudioStream) var music_stream : AudioStream
+export(int) var beats_per_measure : int = 4
+export(int) var beats_per_minute : int = 120
+export(float) var track_offset : float = 0.0
 
 var current_stage_iter : int = 0
 
 func _ready():
-	$BeatControl.play()
+	$BeatControl.play(music_stream, beats_per_minute, beats_per_measure, track_offset)
 	_start_stage()
 
 func start_dialogic_timeline(timeline : String):
