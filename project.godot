@@ -100,9 +100,9 @@ _global_script_classes=[ {
 "path": "res://Scenes/LocationMarker/LocationMarker.gd"
 }, {
 "base": "Resource",
-"class": "StageData",
+"class": "RoundData",
 "language": "GDScript",
-"path": "res://Resources/Stages/StageData.gd"
+"path": "res://Resources/Rounds/RoundData.gd"
 } ]
 _global_script_class_icons={
 "AppLog": "",
@@ -123,7 +123,7 @@ _global_script_class_icons={
 "HistoryRow": "",
 "LocationData": "",
 "LocationMarker": "",
-"StageData": ""
+"RoundData": ""
 }
 
 [application]

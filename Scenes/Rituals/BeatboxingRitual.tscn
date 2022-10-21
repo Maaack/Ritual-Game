@@ -4,8 +4,8 @@
 [ext_resource path="res://Assets/Original/Textures/DallEScene2.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Rituals/BeatboxingRitual.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/BeatControl/BeatControl.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Resources/Stages/CopyMe1.tres" type="Resource" id=5]
-[ext_resource path="res://Resources/Stages/CopyMe2.tres" type="Resource" id=6]
+[ext_resource path="res://Resources/Rounds/CopyMe1.tres" type="Resource" id=5]
+[ext_resource path="res://Resources/Rounds/CopyMe2.tres" type="Resource" id=6]
 
 [node name="BeatboxingRitual" instance=ExtResource( 1 )]
 script = ExtResource( 3 )

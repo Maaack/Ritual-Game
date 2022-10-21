@@ -43,7 +43,7 @@ func play_next_in_sequence():
 	if is_guard_waiting():
 		return
 	var stage = _get_current_stage_data()
-	if not stage is StageData:
+	if not stage is RoundData:
 		return
 	var sequence : Array = stage.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
@@ -117,7 +117,7 @@ func _challenger_failed():
 func _evaluate_played_sequence():
 	set_process_unhandled_input(false)
 	var stage = _get_current_stage_data()
-	if not stage is StageData:
+	if not stage is RoundData:
 		return
 	var sequence : Array = stage.challenger_sequence
 	if played_sequence.size() == sequence.size():
