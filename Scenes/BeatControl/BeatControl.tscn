@@ -73,7 +73,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 
-[node name="StageFeedback" type="Label" parent="."]
+[node name="RoundFeedback" type="Label" parent="."]
 margin_left = 225.0
 margin_top = 343.0
 margin_right = 814.0

@@ -24,13 +24,13 @@
 			"character": "character-1666059727.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ey! Just where do you think you're going, eh?"
+			"text": "You have not failed."
 		},
 		{
 			"character": "character-1666060180.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Uh...I was going to head inside."
+			"text": "Is that a congratulations?"
 		},
 		{
 			"character": "character-1666059727.json",
@@ -39,7 +39,7 @@
 
 			],
 			"portrait": "",
-			"question": "You want in? You gotta show me what you got. You know the deal..."
+			"question": "No! You will not succeed at this next one!"
 		},
 		{
 			"choice": "Beatbox",
@@ -77,7 +77,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1666059858.json",
-		"name": "BeatboxBouncerRitual1-1"
+		"file": "timeline-1666316632.json",
+		"name": "BeatboxGuardRitual1-2"
 	}
 }
