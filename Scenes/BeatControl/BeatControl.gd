@@ -12,7 +12,6 @@ const GUARD_PAUSE_MEASURES : int = 2
 enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
 enum BOXERS{GUARD,PLAYER}
 
-export(Array, Resource) var stages : Array = []
 export(Array, Resource) var rounds : Array = []
 export(int) var modulo_beats : int = 1
 
