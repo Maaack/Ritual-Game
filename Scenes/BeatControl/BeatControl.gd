@@ -91,7 +91,7 @@ func _record_wait_if_no_input():
 	if (not is_processing_unhandled_key_input()) or played_sequence.size() == 0:
 		return
 	played_sequence.append(KEYS.WAIT)
-	_evaluate_played_sequence()
+	_check_sequence_after_waiting()
 
 func _on_AudioStreamConductor_beat_lead_up(total):
 	if not active or not is_challenger_boxing():
@@ -148,24 +148,32 @@ func _challenger_failed():
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
 
-func _evaluate_played_sequence():
+func _has_played_full_sequence():
 	var round_data = _get_current_round_data()
-	if not round_data is RoundData:
-		return
-	var sequence : Array = round_data.challenger_sequence
-	if played_sequence.size() == sequence.size():
-		set_process_unhandled_key_input(false)
-		var final_played_sequence = played_sequence.duplicate()
-		print(final_played_sequence)
-		_reset_guard()
-		current_boxer = BOXERS.NONE
-		yield(get_tree().create_timer(1.0), "timeout")
-		if final_played_sequence.hash() == sequence.hash():
-			_challenger_succeeded()
-		else:
-			_challenger_failed()
-		played_sequence.clear()
-		current_boxer = BOXERS.GUARD
+	return played_sequence.size() == round_data.challenger_sequence.size()
+
+func _evaluate_full_played_sequence():
+	set_process_unhandled_key_input(false)
+	var round_data = _get_current_round_data()
+	var final_played_sequence = played_sequence.duplicate()
+	print(final_played_sequence)
+	_reset_guard()
+	current_boxer = BOXERS.NONE
+	yield(get_tree().create_timer(1.0), "timeout")
+	if final_played_sequence.hash() == round_data.challenger_sequence.hash():
+		_challenger_succeeded()
+	else:
+		_challenger_failed()
+	played_sequence.clear()
+	current_boxer = BOXERS.GUARD
+
+func _check_sequence_after_waiting():
+	if _has_played_full_sequence():
+		_evaluate_full_played_sequence()
+
+func _check_sequence_after_input():
+	if _has_played_full_sequence():
+		_evaluate_full_played_sequence()
 	else:
 		yield(get_tree().create_timer(INPUT_HOLD), "timeout")
 		_refresh_input()
@@ -193,4 +201,4 @@ func _unhandled_key_input(event):
 		played_sequence.append(record_key)
 		score_beat()
 		set_process_unhandled_key_input(false)
-		_evaluate_played_sequence()
+		_check_sequence_after_input()
