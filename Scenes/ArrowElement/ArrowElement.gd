@@ -1,4 +1,4 @@
-extends Sprite
+extends Control
 
 
 func pulse() -> void:

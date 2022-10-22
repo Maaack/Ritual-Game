@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/AppSettings.gd"
 }, {
-"base": "Node2D",
+"base": "Control",
 "class": "BaseRitual",
 "language": "GDScript",
 "path": "res://Scenes/BaseRitual/BaseRitual.gd"
