@@ -12,3 +12,8 @@ func _attach_signals():
 
 func _ready():
 	_attach_signals()
+	
+	if !Config.has_section("Player"):
+		Config.set_config("Player", "Level", 0)
+		
+	print("I'm here dummy")

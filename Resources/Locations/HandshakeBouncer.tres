@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "Beatbox Guard"
-description = "Some extra description"
+name = "Handshake Guard"
+description = "Next Level guard with beatboxing and fancy handshakes"
 ritual_scene_path = "res://Scenes/Rituals/HandshakeRitual.tscn"
+level = 1
