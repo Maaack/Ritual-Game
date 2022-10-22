@@ -1,9 +1,11 @@
 tool
 class_name LocationMarker
-extends TextureButton
+extends Control
 
 export(Resource) var location_data : Resource setget set_location_data
 export(Array, NodePath) var neighbors : Array = []
+
+onready var location_marker_button = $LocationMarkerBtn
 
 func set_location_data(value : Resource) -> void:
 	location_data = value
