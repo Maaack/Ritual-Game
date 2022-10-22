@@ -2,6 +2,8 @@ extends Node2D
 
 signal round_completed(round_number)
 signal challenge_completed
+signal beat_lead_up(total)
+signal note_played(key)
 
 const GREAT_RANGE : float = 0.025
 const GOOD_RANGE : float = 0.075
@@ -57,6 +59,9 @@ func is_challenger_boxing():
 func is_guard_waiting():
 	return guard_waiting > 0
 
+func play_note(key : int) -> void:
+	emit_signal("note_played", key)
+
 func play_next_in_sequence():
 	if not is_guard_boxing():
 		return
@@ -68,17 +73,7 @@ func play_next_in_sequence():
 	var sequence : Array = round_data.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
 	current_key_in_guard_sequence += 1
-	match(next_key):
-		KEYS.UP:
-			$GuardBeats/UpArrow.pulse()
-		KEYS.DOWN:
-			$GuardBeats/DownArrow.pulse()
-		KEYS.LEFT:
-			$GuardBeats/LeftArrow.pulse()
-		KEYS.RIGHT:
-			$GuardBeats/RightArrow.pulse()
-		KEYS.WAIT:
-			pass
+	play_note(next_key)
 	if current_key_in_guard_sequence >= sequence.size():
 		current_boxer = BOXERS.CHALLENGER
 
@@ -92,10 +87,10 @@ func _record_wait_if_no_input():
 	played_sequence.append(KEYS.WAIT)
 	_check_sequence_after_waiting()
 
-func _on_AudioStreamConductor_beat_lead_up(_total):
+func _on_AudioStreamConductor_beat_lead_up(total):
 	if not active or not is_challenger_boxing():
 		return
-	$NoteTrack.drop_note()
+	emit_signal("beat_lead_up", total)
 
 func _on_AudioStreamConductor_beat(_total, in_measure):
 	if not active:
@@ -195,25 +190,21 @@ func _play_challenger_sound(played_key):
 	$ChallengerSFX.play()
 
 func _unhandled_key_input(event):
+	print("input")
 	if is_guard_boxing():
 		current_boxer = BOXERS.CHALLENGER
 		return
-	var arrow_node : Node2D
 	var record_key : int
 	if event.is_action_pressed("move_forward"):
-		arrow_node = $PlayerBeats/UpArrow
 		record_key = KEYS.UP
 	elif event.is_action_pressed("move_backward"):
-		arrow_node = $PlayerBeats/DownArrow
 		record_key = KEYS.DOWN
 	elif event.is_action_pressed("move_left"):
-		arrow_node = $PlayerBeats/LeftArrow
 		record_key = KEYS.LEFT
 	elif event.is_action_pressed("move_right"):
-		arrow_node = $PlayerBeats/RightArrow
 		record_key = KEYS.RIGHT
-	if arrow_node:
-		arrow_node.pulse()
+	if record_key:
+		play_note(record_key)
 		_play_challenger_sound(record_key)
 		played_sequence.append(record_key)
 		score_beat()

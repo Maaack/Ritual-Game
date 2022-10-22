@@ -54,3 +54,11 @@ func dialog_listener(string):
 
 func _on_BeatControl_challenge_completed():
 	_complete_stage()
+
+
+func _on_BeatControl_beat_lead_up(total):
+	$VBoxContainer/BeatVisualizer.show_beat()
+
+
+func _on_BeatControl_note_played(key):
+	$VBoxContainer/CenterContainer/NoteVisualizer.play_note(key)

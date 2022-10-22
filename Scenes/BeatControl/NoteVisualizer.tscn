@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/BeatControl/NoteVisualizer.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ArrowElement/ArrowElement.tscn" type="PackedScene" id=2]
+
+[node name="NoteVisualizer" type="Control"]
+margin_left = 512.0
+margin_top = 200.0
+margin_right = 512.0
+margin_bottom = 200.0
+script = ExtResource( 1 )
+
+[node name="ArrowElementDown" parent="." instance=ExtResource( 2 )]
+
+[node name="ArrowElementUp" parent="." instance=ExtResource( 2 )]
+rect_rotation = 180.0
+
+[node name="ArrowElementLeft" parent="." instance=ExtResource( 2 )]
+rect_rotation = 90.0
+
+[node name="ArrowElementRight" parent="." instance=ExtResource( 2 )]
+rect_rotation = -90.0
