@@ -190,7 +190,6 @@ func _play_challenger_sound(played_key):
 	$ChallengerSFX.play()
 
 func _unhandled_key_input(event):
-	print("input")
 	if is_guard_boxing():
 		current_boxer = BOXERS.CHALLENGER
 		return
