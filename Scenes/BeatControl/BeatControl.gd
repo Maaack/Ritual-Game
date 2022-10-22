@@ -137,11 +137,13 @@ func _refresh_input():
 
 func _challenger_succeeded():
 	_complete_round()
+	$SuccessSFX.play()
 	$RoundFeedback.text = "Scripture"
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
 
 func _challenger_failed():
+	$FailureSFX.play()
 	$RoundFeedback.text = "Blasphemy"
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
@@ -156,6 +158,7 @@ func _evaluate_full_played_sequence():
 	var final_played_sequence = played_sequence.duplicate()
 	print(final_played_sequence)
 	current_boxer = BOXERS.NONE
+	$ProcessingSFX.play()
 	yield(get_tree().create_timer(1.0), "timeout")
 	if final_played_sequence.hash() == round_data.challenger_sequence.hash():
 		_challenger_succeeded()
