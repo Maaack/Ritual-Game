@@ -17,9 +17,9 @@ enum StaticTime {
 }
 
 const GROUP_NAME: String = "DayNightCycle"
-const NIGHT_COLOR: Color = Color("#091d3a")
+const NIGHT_COLOR: Color = Color("#152947")
 const DAY_COLOR: Color = Color("#ffffff")
-const EVENING_COLOR: Color = Color("#ff3300")
+const EVENING_COLOR: Color = Color("#7891b2")
 const HALF_DAY_IN_SECONDS: float = 60.0 * 60.0 * 12.0
 
 export(TimeMode) var time_mode = TimeMode.STATIC
