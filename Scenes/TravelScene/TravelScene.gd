@@ -12,3 +12,9 @@ func _attach_signals():
 
 func _ready():
 	_attach_signals()
+	
+	if !Config.has_section("Player"):
+		Config.set_config("Player", "Level", 0)
+		
+	if Config.get_config("Player", "Level", 0) == 1:
+		$HandshakeGuard.visible = true #can loop through all level 1 levels here rather than hard code eventually?

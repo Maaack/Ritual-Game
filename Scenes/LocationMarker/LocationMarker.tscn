@@ -65,12 +65,13 @@ icon_align = 1
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 9 )
+frame = 5
 playing = true
 
 [node name="Light2D" type="Light2D" parent="AnimatedSprite"]
 texture = ExtResource( 4 )
-texture_scale = 0.8
-energy = 0.9
+texture_scale = 0.25
+energy = 0.78
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
