@@ -369,6 +369,9 @@ custom_constants/margin_bottom = 128
 
 [node name="MainMenuButtons" parent="MenuContainer" instance=ExtResource( 2 )]
 
+[node name="PlayButton" parent="MenuContainer/MainMenuButtons/ButtonsContainer" index="0"]
+theme = ExtResource( 4 )
+
 [node name="MasterOptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
 anchor_left = 0.5
