@@ -13,7 +13,7 @@ enum KEYS{WAIT,UP,DOWN,LEFT,RIGHT}
 enum BOXERS{NONE,GUARD,CHALLENGER}
 
 export(Array, Resource) var rounds : Array = []
-export(int) var modulo_beats : int = 1
+export(Array, AudioStream) var mistake_sounds : Array = []
 
 var current_round_iter : int = 0
 var current_key_in_guard_sequence : int = 0
@@ -68,7 +68,6 @@ func play_next_in_sequence():
 	var sequence : Array = round_data.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
 	current_key_in_guard_sequence += 1
-	var container_node : Node2D
 	match(next_key):
 		KEYS.UP:
 			$GuardBeats/UpArrow.pulse()
@@ -89,16 +88,16 @@ func _record_wait_if_no_input():
 	yield(get_tree().create_timer(INPUT_HOLD/2.0), "timeout")
 	if (not is_processing_unhandled_key_input()) or played_sequence.size() == 0:
 		return
-	_play_challenger_sound()
+	_play_challenger_sound(KEYS.WAIT)
 	played_sequence.append(KEYS.WAIT)
 	_check_sequence_after_waiting()
 
-func _on_AudioStreamConductor_beat_lead_up(total):
+func _on_AudioStreamConductor_beat_lead_up(_total):
 	if not active or not is_challenger_boxing():
 		return
 	$NoteTrack.drop_note()
 
-func _on_AudioStreamConductor_beat(total, in_measure):
+func _on_AudioStreamConductor_beat(_total, in_measure):
 	if not active:
 		return
 	if is_challenger_boxing():
@@ -106,8 +105,7 @@ func _on_AudioStreamConductor_beat(total, in_measure):
 	if is_guard_boxing():
 		if in_measure == 0 and is_guard_waiting():
 			guard_waiting -= 1
-		if total % modulo_beats == 0:
-			play_next_in_sequence()
+		play_next_in_sequence()
 
 func play(audio_stream : AudioStream, beats_per_minute : int, beats_per_measure : int, track_offset : float = 0.0):
 	$AudioStreamConductor.stream = audio_stream
@@ -178,12 +176,18 @@ func _check_sequence_after_input():
 		yield(get_tree().create_timer(INPUT_HOLD), "timeout")
 		_refresh_input()
 
-func _play_challenger_sound():
+func _play_challenger_sound(played_key):
 	var round_data = _get_current_round_data()
 	var current_note : int = played_sequence.size()
 	if current_note >= round_data.challenger_streams.size():
 		return
-	var audio_stream = round_data.challenger_streams[current_note]
+	var expected_key = round_data.challenger_sequence[current_note]
+	var audio_stream : AudioStream
+	if expected_key == played_key:
+		audio_stream = round_data.challenger_streams[current_note]
+	else:
+		mistake_sounds.shuffle()
+		audio_stream = mistake_sounds[0]
 	$ChallengerSFX.stream = audio_stream
 	$ChallengerSFX.play()
 
@@ -207,7 +211,7 @@ func _unhandled_key_input(event):
 		record_key = KEYS.RIGHT
 	if arrow_node:
 		arrow_node.pulse()
-		_play_challenger_sound()
+		_play_challenger_sound(record_key)
 		played_sequence.append(record_key)
 		score_beat()
 		set_process_unhandled_key_input(false)
