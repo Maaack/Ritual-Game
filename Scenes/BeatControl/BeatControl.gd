@@ -2,10 +2,10 @@ extends Node2D
 
 signal round_completed(round_number)
 signal challenge_completed
+signal beat_lead_up(total)
+signal note_played(key)
+signal beat_hit(delta)
 
-const GREAT_RANGE : float = 0.025
-const GOOD_RANGE : float = 0.075
-const MEH_RANGE : float = 0.15
 const INPUT_HOLD : float = 0.4
 const GUARD_PAUSE_MEASURES : int = 1
 
@@ -18,7 +18,6 @@ export(Array, AudioStream) var mistake_sounds : Array = []
 var current_round_iter : int = 0
 var current_key_in_guard_sequence : int = 0
 var current_boxer : int = BOXERS.GUARD
-var score : int = 0
 var guard_waiting : int = 0
 var played_sequence : Array = []
 var active : bool = false
@@ -57,6 +56,9 @@ func is_challenger_boxing():
 func is_guard_waiting():
 	return guard_waiting > 0
 
+func play_note(key : int) -> void:
+	emit_signal("note_played", key)
+
 func play_next_in_sequence():
 	if not is_guard_boxing():
 		return
@@ -68,17 +70,7 @@ func play_next_in_sequence():
 	var sequence : Array = round_data.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
 	current_key_in_guard_sequence += 1
-	match(next_key):
-		KEYS.UP:
-			$GuardBeats/UpArrow.pulse()
-		KEYS.DOWN:
-			$GuardBeats/DownArrow.pulse()
-		KEYS.LEFT:
-			$GuardBeats/LeftArrow.pulse()
-		KEYS.RIGHT:
-			$GuardBeats/RightArrow.pulse()
-		KEYS.WAIT:
-			pass
+	play_note(next_key)
 	if current_key_in_guard_sequence >= sequence.size():
 		current_boxer = BOXERS.CHALLENGER
 
@@ -92,10 +84,10 @@ func _record_wait_if_no_input():
 	played_sequence.append(KEYS.WAIT)
 	_check_sequence_after_waiting()
 
-func _on_AudioStreamConductor_beat_lead_up(_total):
+func _on_AudioStreamConductor_beat_lead_up(total):
 	if not active or not is_challenger_boxing():
 		return
-	$NoteTrack.drop_note()
+	emit_signal("beat_lead_up", total)
 
 func _on_AudioStreamConductor_beat(_total, in_measure):
 	if not active:
@@ -116,23 +108,10 @@ func play(audio_stream : AudioStream, beats_per_minute : int, beats_per_measure 
 
 func score_beat():
 	var delta = $AudioStreamConductor.get_time_to_closest_beat()
-	$TimeToBeatLabel.text = "%0.5f" % delta
-	if delta < GREAT_RANGE:
-		score += 100
-		$BigFeedback.text = "Great"
-	elif delta < GOOD_RANGE:
-		score += 25
-		$BigFeedback.text = "Good"
-	elif delta < MEH_RANGE:
-		score += 10
-		$BigFeedback.text = "Meh"
-	else:
-		$BigFeedback.text = "What?"
-	$ScoreLabel.text = "%d" % score
+	emit_signal("beat_hit", delta)
 
 func _refresh_input():
 	$RoundFeedback.text = ""
-	$BigFeedback.text = ""
 	set_process_unhandled_key_input(true)
 
 func _challenger_succeeded():
@@ -198,22 +177,17 @@ func _unhandled_key_input(event):
 	if is_guard_boxing():
 		current_boxer = BOXERS.CHALLENGER
 		return
-	var arrow_node : Node2D
 	var record_key : int
 	if event.is_action_pressed("move_forward"):
-		arrow_node = $PlayerBeats/UpArrow
 		record_key = KEYS.UP
 	elif event.is_action_pressed("move_backward"):
-		arrow_node = $PlayerBeats/DownArrow
 		record_key = KEYS.DOWN
 	elif event.is_action_pressed("move_left"):
-		arrow_node = $PlayerBeats/LeftArrow
 		record_key = KEYS.LEFT
 	elif event.is_action_pressed("move_right"):
-		arrow_node = $PlayerBeats/RightArrow
 		record_key = KEYS.RIGHT
-	if arrow_node:
-		arrow_node.pulse()
+	if record_key:
+		play_note(record_key)
 		_play_challenger_sound(record_key)
 		played_sequence.append(record_key)
 		score_beat()
