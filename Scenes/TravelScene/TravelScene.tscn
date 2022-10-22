@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Original/Sprites/BG.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/LocationMarker/LocationMarker.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://Resources/Locations/BeatboxingGuard.tres" type="Resource" id=4]
 [ext_resource path="res://Scenes/TravelScene/TravelScene.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Original/Sprites/Map.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/Rituals/HandshakeRitual.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Resources/Locations/HandshakeBouncer.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/DayNight/DayNight.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/TravelScene/Travel Scene Theme.tres" type="Theme" id=9]
 
 [node name="TravelScene" type="Node2D"]
 script = ExtResource( 5 )
@@ -38,6 +39,7 @@ margin_left = 296.0
 margin_top = 295.0
 margin_right = 360.0
 margin_bottom = 359.0
+theme = ExtResource( 9 )
 location_data = ExtResource( 3 )
 
 [node name="Guard" parent="." instance=ExtResource( 2 )]
