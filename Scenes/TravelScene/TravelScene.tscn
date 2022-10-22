@@ -6,7 +6,7 @@
 [ext_resource path="res://Resources/Locations/BeatboxingGuard.tres" type="Resource" id=4]
 [ext_resource path="res://Scenes/TravelScene/TravelScene.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Original/Sprites/Map.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Locations/HandshakeBouncer.tres" type="Resource" id=7]
+[ext_resource path="res://Resources/Locations/BeatboxingGuard2.tres" type="Resource" id=7]
 [ext_resource path="res://Scenes/DayNight/DayNight.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/TravelScene/Travel Scene Theme.tres" type="Theme" id=9]
 
@@ -53,7 +53,7 @@ margin_right = 721.0
 margin_bottom = 334.0
 location_data = ExtResource( 4 )
 
-[node name="HandshakeGuard" parent="." instance=ExtResource( 2 )]
+[node name="Guard2" parent="." instance=ExtResource( 2 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
