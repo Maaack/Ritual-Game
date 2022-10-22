@@ -42,7 +42,7 @@ func _start_stage():
 func _complete_ritual():
 	current_stage_iter = 0
 	emit_signal("ritual_completed")
-	SceneLoader.load_scene(return_to_scene)
+	leave_ritual()
 
 func _complete_stage():
 	current_stage_iter += 1
@@ -53,7 +53,7 @@ func _complete_stage():
 func dialog_listener(string):
 	match string:
 		"return":
-			SceneLoader.load_scene(return_to_scene)
+			leave_ritual()
 		"beatbox":
 			_start_challenge()
 
@@ -89,3 +89,7 @@ func _on_BeatControl_note_played(key):
 
 func _on_BeatControl_beat_hit(delta):
 	score_beat(delta)
+
+
+func _on_BackButton_pressed():
+	leave_ritual()

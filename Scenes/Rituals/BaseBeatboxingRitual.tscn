@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/BaseRitual/BaseRitual.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Original/Textures/DallEScene2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/BeatControl/BeatVisualizer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/BeatControl/NoteVisualizer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Sourced/Fonts/zero-hour/zero hour.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Sourced/Icons/fast-backward-button.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -15,6 +16,7 @@ outline_size = 2
 font_data = ExtResource( 8 )
 
 [node name="BaseBeatboxingRitual" instance=ExtResource( 1 )]
+mouse_filter = 1
 theme = ExtResource( 5 )
 script = ExtResource( 3 )
 stages = [  ]
@@ -27,9 +29,9 @@ track_offset = 0.0
 texture = ExtResource( 2 )
 centered = false
 
-[node name="BeatControl" parent="." index="2" instance=ExtResource( 4 )]
+[node name="BeatControl" parent="." index="1" instance=ExtResource( 4 )]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 0
@@ -38,6 +40,7 @@ custom_constants/separation = 0
 margin_right = 1024.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 0, 140 )
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="VBoxContainer/TopBar" index="0"]
 anchor_left = 0.5
@@ -114,6 +117,15 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 
+[node name="BackButton" type="TextureButton" parent="VBoxContainer/TopBar" index="2"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+texture_focused = ExtResource( 9 )
+
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" index="1"]
 margin_top = 140.0
 margin_right = 1024.0
@@ -133,3 +145,4 @@ size_flags_vertical = 1
 [connection signal="beat_lead_up" from="BeatControl" to="." method="_on_BeatControl_beat_lead_up"]
 [connection signal="challenge_completed" from="BeatControl" to="." method="_on_BeatControl_challenge_completed"]
 [connection signal="note_played" from="BeatControl" to="." method="_on_BeatControl_note_played"]
+[connection signal="pressed" from="VBoxContainer/TopBar/BackButton" to="." method="_on_BackButton_pressed"]

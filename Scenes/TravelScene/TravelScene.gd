@@ -13,7 +13,6 @@ func _attach_signals():
 func _ready():
 	_attach_signals()
 	if RitualCooldownManager.bouncer_cooldown == true:
-		print("Starting Bouncer cooldown")
 		$Bouncer.start_timer()
 		RitualCooldownManager.bouncer_cooldown = false
 	
