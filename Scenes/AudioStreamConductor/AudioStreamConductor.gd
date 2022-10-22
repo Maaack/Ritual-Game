@@ -12,7 +12,7 @@ var song_position_in_beats = 0
 var last_beat_lead_up = 0
 
 signal beat(total, in_measure)
-signal beat_lead_up(total)
+signal beat_lead_up(total, in_measure)
 
 func get_seconds_per_beat():
 	return SECONDS_PER_MINUTE / beats_per_minute
@@ -40,7 +40,7 @@ func _report_beat():
 		emit_signal("beat", song_position_in_beats, song_position_in_beats % beats_per_measure)
 	elif get_time_to_next_beat() < beat_lead_time and last_beat_lead_up != next_beat:
 		last_beat_lead_up = next_beat
-		emit_signal("beat_lead_up", last_beat_lead_up)
+		emit_signal("beat_lead_up", last_beat_lead_up, last_beat_lead_up % beats_per_measure)
 
 func _physics_process(_delta):
 	if playing:
