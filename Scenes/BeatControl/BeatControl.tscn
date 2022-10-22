@@ -49,25 +49,6 @@ bus = "SFX"
 position = Vector2( 256, 259 )
 bus = "SFX"
 
-[node name="Label" type="Label" parent="."]
-margin_left = 703.0
-margin_top = 255.0
-margin_right = 788.0
-margin_bottom = 303.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Time to beat:
-
-Score:"
-
-[node name="BigFeedback" type="Label" parent="."]
-margin_left = 74.0
-margin_top = 256.0
-margin_right = 437.0
-margin_bottom = 333.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-align = 1
-
 [node name="RoundFeedback" type="Label" parent="."]
 margin_left = 225.0
 margin_top = 343.0
@@ -79,22 +60,6 @@ align = 1
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="TimeToBeatLabel" type="Label" parent="."]
-margin_left = 793.0
-margin_top = 255.0
-margin_right = 878.0
-margin_bottom = 269.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 2
-
-[node name="ScoreLabel" type="Label" parent="."]
-margin_left = 793.0
-margin_top = 289.0
-margin_right = 878.0
-margin_bottom = 303.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 2
 
 [connection signal="beat" from="AudioStreamConductor" to="." method="_on_AudioStreamConductor_beat"]
 [connection signal="beat_lead_up" from="AudioStreamConductor" to="." method="_on_AudioStreamConductor_beat_lead_up"]

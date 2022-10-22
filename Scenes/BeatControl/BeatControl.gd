@@ -4,10 +4,8 @@ signal round_completed(round_number)
 signal challenge_completed
 signal beat_lead_up(total)
 signal note_played(key)
+signal beat_hit(delta)
 
-const GREAT_RANGE : float = 0.025
-const GOOD_RANGE : float = 0.075
-const MEH_RANGE : float = 0.15
 const INPUT_HOLD : float = 0.4
 const GUARD_PAUSE_MEASURES : int = 1
 
@@ -20,7 +18,6 @@ export(Array, AudioStream) var mistake_sounds : Array = []
 var current_round_iter : int = 0
 var current_key_in_guard_sequence : int = 0
 var current_boxer : int = BOXERS.GUARD
-var score : int = 0
 var guard_waiting : int = 0
 var played_sequence : Array = []
 var active : bool = false
@@ -111,23 +108,10 @@ func play(audio_stream : AudioStream, beats_per_minute : int, beats_per_measure 
 
 func score_beat():
 	var delta = $AudioStreamConductor.get_time_to_closest_beat()
-	$TimeToBeatLabel.text = "%0.5f" % delta
-	if delta < GREAT_RANGE:
-		score += 100
-		$BigFeedback.text = "Great"
-	elif delta < GOOD_RANGE:
-		score += 25
-		$BigFeedback.text = "Good"
-	elif delta < MEH_RANGE:
-		score += 10
-		$BigFeedback.text = "Meh"
-	else:
-		$BigFeedback.text = "What?"
-	$ScoreLabel.text = "%d" % score
+	emit_signal("beat_hit", delta)
 
 func _refresh_input():
 	$RoundFeedback.text = ""
-	$BigFeedback.text = ""
 	set_process_unhandled_key_input(true)
 
 func _challenger_succeeded():
