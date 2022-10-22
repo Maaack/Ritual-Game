@@ -17,4 +17,4 @@ func _ready():
 		Config.set_config("Player", "Level", 0)
 		
 	if Config.get_config("Player", "Level", 0) == 1:
-		$HandshakeGuard.visible = true #can loop through all level 1 levels here rather than hard code eventually?
+		$Guard2.visible = true #can loop through all level 1 levels here rather than hard code eventually?
