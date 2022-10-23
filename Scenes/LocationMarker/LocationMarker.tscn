@@ -65,7 +65,7 @@ icon_align = 1
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 9 )
-frame = 5
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="AnimatedSprite"]
