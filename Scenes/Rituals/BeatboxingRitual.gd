@@ -55,9 +55,13 @@ func _complete_stage():
 func dialog_listener(string):
 	match string:
 		"return":
-			SceneLoader.load_scene(return_to_scene)
+			leave_ritual()
 		"beatbox":
 			_start_challenge()
+			
+func leave_ritual():	
+	RitualCooldownManager.start_cooldown(location_data)
+	.leave_ritual()
 
 func score_beat(delta):
 	var feedback_node = get_node("%BigFeedback")
@@ -91,3 +95,7 @@ func _on_BeatControl_note_played(key):
 
 func _on_BeatControl_beat_hit(delta):
 	score_beat(delta)
+
+
+func _on_BackButton_pressed():
+	leave_ritual()

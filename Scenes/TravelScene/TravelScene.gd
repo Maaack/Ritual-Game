@@ -18,6 +18,8 @@ func _ready():
 	var location_container = get_node("%LocationContainer")
 	for child in location_container.get_children():
 		if child is LocationMarker:
+			if child.location_data == RitualCooldownManager.left_location:
+				child.start_timer()
 			var location_level = child.location_data.level
 			if location_level > player_level:
 				child.hide()

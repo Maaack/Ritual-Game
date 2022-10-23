@@ -14,3 +14,10 @@ func set_location_data(value : Resource) -> void:
 
 func _ready():
 	self.location_data = location_data
+	
+func start_timer():
+	$AnimationPlayer.play("Cooldown")
+	$LocationMarkerBtn.disabled = true
+	yield(get_tree().create_timer(10.0), "timeout")	
+	$LocationMarkerBtn.disabled = false
+	$AnimationPlayer.play("Active")	
