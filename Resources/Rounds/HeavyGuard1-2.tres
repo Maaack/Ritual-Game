@@ -1,19 +1,19 @@
 [gd_resource type="Resource" load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece f.ogg" type="AudioStream" id=1]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Guard Beat 3 - ogg.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece a.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece h.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece d.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece b.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece g.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Guard 8 - ogg.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece h.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece e.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece f.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece a.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece d (empty and that's ok).ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece b.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Resources/Rounds/RoundData.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece c.ogg" type="AudioStream" id=9]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 3 - piece e.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece g.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_8/Ritual - New BB - Player 8 - piece c.ogg" type="AudioStream" id=10]
 
 [resource]
 script = ExtResource( 8 )
-guard_stream = ExtResource( 2 )
+guard_stream = ExtResource( 1 )
 guard_sequence = [ 2, 2, 3, 0, 2, 2, 4, 0 ]
 challenger_sequence = [ 2, 2, 3, 0, 2, 2, 4, 0 ]
-challenger_streams = [ ExtResource( 3 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 4 ) ]
+challenger_streams = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 2 ) ]
