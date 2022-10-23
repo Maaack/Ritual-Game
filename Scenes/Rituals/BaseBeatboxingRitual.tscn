@@ -24,6 +24,7 @@ music_stream = null
 beats_per_measure = 8
 beats_per_minute = 120
 track_offset = 0.0
+location_data = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

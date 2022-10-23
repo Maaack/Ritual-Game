@@ -18,7 +18,7 @@ export(Array, AudioStream) var mistake_sounds : Array = []
 var current_round_iter : int = 0
 var current_key_in_guard_sequence : int = 0
 var current_boxer : int = BOXERS.GUARD
-var guard_waiting : int = 0
+var boxer_waiting : bool = true
 var played_sequence : Array = []
 var active : bool = false
 
@@ -34,7 +34,6 @@ func _get_current_round_data():
 	return rounds[current_round_iter]
 
 func _reset_guard():
-	guard_waiting = GUARD_PAUSE_MEASURES
 	current_key_in_guard_sequence = 0
 	var round_data = _get_current_round_data()
 	if round_data is RoundData:
@@ -53,14 +52,11 @@ func is_guard_boxing():
 func is_challenger_boxing():
 	return current_boxer == BOXERS.CHALLENGER
 
-func is_guard_waiting():
-	return guard_waiting > 0
-
 func play_note(key : int) -> void:
 	emit_signal("note_played", key)
 
 func play_next_in_sequence():
-	if not is_guard_boxing():
+	if boxer_waiting or (not is_guard_boxing()):
 		return
 	var round_data = _get_current_round_data()
 	if not round_data is RoundData:
@@ -72,6 +68,7 @@ func play_next_in_sequence():
 	current_key_in_guard_sequence += 1
 	play_note(next_key)
 	if current_key_in_guard_sequence >= sequence.size():
+		boxer_waiting = true
 		current_boxer = BOXERS.CHALLENGER
 
 func _record_wait_if_no_input():
@@ -84,19 +81,21 @@ func _record_wait_if_no_input():
 	played_sequence.append(KEYS.WAIT)
 	_check_sequence_after_waiting()
 
-func _on_AudioStreamConductor_beat_lead_up(total):
-	if not active or not is_challenger_boxing():
+func _on_AudioStreamConductor_beat_lead_up(total, in_measure):
+	if is_challenger_boxing() and boxer_waiting and in_measure == 0:
+		boxer_waiting = false
+	if not active or boxer_waiting or not is_challenger_boxing():
 		return
 	emit_signal("beat_lead_up", total)
 
 func _on_AudioStreamConductor_beat(_total, in_measure):
 	if not active:
 		return
+	if in_measure == 0 and boxer_waiting:
+		boxer_waiting = false
 	if is_challenger_boxing():
 		_record_wait_if_no_input()
 	if is_guard_boxing():
-		if in_measure == 0 and is_guard_waiting():
-			guard_waiting -= 1
 		play_next_in_sequence()
 
 func play(audio_stream : AudioStream, beats_per_minute : int, beats_per_measure : int, track_offset : float = 0.0):
@@ -145,6 +144,7 @@ func _evaluate_full_played_sequence():
 		_challenger_failed()
 	played_sequence.clear()
 	_reset_guard()
+	boxer_waiting = true
 	current_boxer = BOXERS.GUARD
 
 func _check_sequence_after_waiting():

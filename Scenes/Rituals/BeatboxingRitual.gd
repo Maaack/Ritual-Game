@@ -11,6 +11,7 @@ export(AudioStream) var music_stream : AudioStream
 export(int) var beats_per_measure : int = 4
 export(int) var beats_per_minute : int = 120
 export(float) var track_offset : float = 0.0
+export(Resource) var location_data : Resource
 
 var current_stage_iter : int = 0
 var score : int = 0
@@ -42,7 +43,8 @@ func _start_stage():
 func _complete_ritual():
 	current_stage_iter = 0
 	emit_signal("ritual_completed")
-	leave_ritual()
+	GameLog.level_reached(location_data.level + 1)
+	SceneLoader.load_scene(return_to_scene)
 
 func _complete_stage():
 	current_stage_iter += 1
