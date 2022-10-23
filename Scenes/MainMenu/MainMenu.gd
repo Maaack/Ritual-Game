@@ -68,6 +68,9 @@ func _ready():
 	_setup_for_web()
 	_setup_version_name()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+	
+func _physics_process(delta):
+	$Panel/ParallaxBackground/ParallaxLayer.motion_offset.x += .15
 
 func _on_Credits_end_reached():
 	_close_sub_menu()
