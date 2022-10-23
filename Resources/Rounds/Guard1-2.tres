@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 2 - piece d.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 2 - piece a.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Guard Beat 2 - ogg.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 2 - piece b.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Resources/Rounds/RoundData.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 2 - piece c.ogg" type="AudioStream" id=6]
+
+[resource]
+script = ExtResource( 5 )
+guard_stream = ExtResource( 3 )
+guard_sequence = [ 3, 3, 4, 0, 4, 4, 3, 0 ]
+challenger_sequence = [ 3, 3, 4, 0, 4, 4, 3, 0 ]
+challenger_streams = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 1 ) ]

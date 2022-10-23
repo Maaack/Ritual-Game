@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Rounds/HeavyBouncer1-1.tres" type="Resource" id=2]
+[ext_resource path="res://Resources/Stages/StageData.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 3 )
+dialogic_timeline = "BeatboxBouncerRitual1-1"
+rounds = [ ExtResource( 2 ) ]
