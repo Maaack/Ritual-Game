@@ -117,12 +117,14 @@ func _challenger_succeeded():
 	_complete_round()
 	$SuccessSFX.play()
 	$RoundFeedback.text = "Scripture"
+	$RoundFeedback.set("custom_colors/font_color", Color(0.22,0.92,0.2))
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
 
 func _challenger_failed():
 	$FailureSFX.play()
 	$RoundFeedback.text = "Blasphemy"
+	$RoundFeedback.set("custom_colors/font_color", Color(1,0,0))
 	yield(get_tree().create_timer(1.0), "timeout")
 	_refresh_input()
 
