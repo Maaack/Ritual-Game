@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 func _load_ritual(location_data : LocationData) -> void:
@@ -13,8 +13,14 @@ func _attach_signals():
 func _ready():
 	_attach_signals()
 	
-	if !Config.has_section("Player"):
-		Config.set_config("Player", "Level", 0)
-		
-	if Config.get_config("Player", "Level", 0) == 1:
-		$HandshakeGuard.visible = true #can loop through all level 1 levels here rather than hard code eventually?
+	var player_level : int = 0
+	if not Config.has_section("Player"):
+		Config.set_config("Player", "Level", player_level)
+	
+	player_level = Config.get_config("Player", "Level", player_level)
+	var location_container = get_node("%LocationContainer")
+	for child in location_container.get_children():
+		if child is LocationMarker:
+			var location_level = child.location_data.level
+			if location_level > player_level:
+				child.hide()
