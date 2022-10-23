@@ -1,0 +1,21 @@
+{
+	"color": "#ffff0083",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1666543759.json",
+	"mirror_portraits": true,
+	"name": "Bouncer",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -100,
+	"offset_y": -200,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://Assets/Original/Characters/wraith.png"
+		}
+	],
+	"scale": 400,
+	"theme": ""
+}

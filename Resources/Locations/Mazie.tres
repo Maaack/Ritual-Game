@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "Beatboxing Guard 2"
+name = "Mazie"
 description = "Some extra description"
-ritual_scene_path = "res://Scenes/Rituals/BeatboxingGuardRitual.tscn"
+ritual_scene_path = "res://Scenes/Rituals/MazieRitual.tscn"
 level = 2

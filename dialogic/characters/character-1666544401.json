@@ -1,0 +1,21 @@
+{
+	"color": "#ff0a00ae",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1666544401.json",
+	"mirror_portraits": false,
+	"name": "Heavy Guard",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -100,
+	"offset_y": -200,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://Assets/Original/Characters/Robot_Gaurd.png"
+		}
+	],
+	"scale": 400,
+	"theme": ""
+}

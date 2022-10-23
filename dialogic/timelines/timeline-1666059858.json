@@ -5,7 +5,7 @@
 			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1666059727.json",
+			"character": "character-1666543759.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": true,
 			"portrait": "Default",
@@ -41,7 +41,7 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1666059727.json",
+			"character": "character-1666543759.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Ey! Just where do you think you're going, eh?"
@@ -50,10 +50,10 @@
 			"character": "character-1666060180.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Uh...I was going to head inside."
+			"text": "Uh... inside..."
 		},
 		{
-			"character": "character-1666059727.json",
+			"character": "character-1666543759.json",
 			"event_id": "dialogic_010",
 			"options": [
 

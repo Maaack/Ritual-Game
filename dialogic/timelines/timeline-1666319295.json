@@ -5,7 +5,7 @@
 			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1666059727.json",
+			"character": "character-1666543759.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": true,
 			"portrait": "Default",
@@ -41,7 +41,7 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1666059727.json",
+			"character": "character-1666543759.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Alright alright. You ain't bad."
@@ -53,13 +53,13 @@
 			"text": "Am I good?"
 		},
 		{
-			"character": "character-1666059727.json",
+			"character": "character-1666543759.json",
 			"event_id": "dialogic_010",
 			"options": [
 
 			],
 			"portrait": "",
-			"question": "Got to keep checking you first."
+			"question": "Are you good? Ha! Let's do two in a row and find out!"
 		},
 		{
 			"choice": "Beatbox",

@@ -31,20 +31,29 @@ func _complete_round() -> void:
 		active = false
 
 func _get_current_round_data():
+
 	return rounds[current_round_iter]
 
-func _reset_guard():
+func _reset_call_and_response():
+	boxer_waiting = true
+	current_boxer = BOXERS.GUARD
 	current_key_in_guard_sequence = 0
+
+func play_guard_music():
 	var round_data = _get_current_round_data()
-	if round_data is RoundData:
+	if $GuardSFX.stream != round_data.guard_stream:
 		$GuardSFX.stream = round_data.guard_stream
+	if not $GuardSFX.playing:
+		$GuardSFX.play()
 
 func reset():
-	_reset_guard()
+	if rounds.size() < 1:
+		emit_signal("challenge_completed")
+		active = false
 	current_round_iter = 0
 	current_boxer = BOXERS.NONE
 	yield(get_tree().create_timer(INPUT_HOLD),"timeout")
-	current_boxer = BOXERS.GUARD
+	_reset_call_and_response()
 
 func is_guard_boxing():
 	return current_boxer == BOXERS.GUARD
@@ -61,8 +70,7 @@ func play_next_in_sequence():
 	var round_data = _get_current_round_data()
 	if not round_data is RoundData:
 		return
-	if not $GuardSFX.playing:
-		$GuardSFX.play()
+	play_guard_music()
 	var sequence : Array = round_data.guard_sequence
 	var next_key = sequence[current_key_in_guard_sequence]
 	current_key_in_guard_sequence += 1
@@ -74,7 +82,7 @@ func play_next_in_sequence():
 func _record_wait_if_no_input():
 	if not is_processing_unhandled_key_input():
 		return
-	yield(get_tree().create_timer(INPUT_HOLD/2.0), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	if (not is_processing_unhandled_key_input()) or played_sequence.size() == 0:
 		return
 	_play_challenger_sound(KEYS.WAIT)
@@ -145,9 +153,7 @@ func _evaluate_full_played_sequence():
 	else:
 		_challenger_failed()
 	played_sequence.clear()
-	_reset_guard()
-	boxer_waiting = true
-	current_boxer = BOXERS.GUARD
+	_reset_call_and_response()
 
 func _check_sequence_after_waiting():
 	if _has_played_full_sequence():

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Stages/StageData.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Rounds/Mazie1-1.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+dialogic_timeline = "Mazie1-1"
+rounds = [ ExtResource( 2 ) ]

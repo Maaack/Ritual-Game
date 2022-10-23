@@ -1,15 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 1 - piece b.ogg" type="AudioStream" id=1]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 1 - piece c.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 1 - piece a.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece b.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece g.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece c.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Resources/Rounds/RoundData.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Player Beat 1 - piece d.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Assets/Original/Beats/Ritual - BB - Guard Beat 1 - ogg.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece f.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece a.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Guard 5 - ogg.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece e.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece h.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Original/Beats/Ritual_-_New_BB_-_5/Ritual - New BB - Player 5 - piece d.ogg" type="AudioStream" id=10]
 
 [resource]
 script = ExtResource( 4 )
-guard_stream = ExtResource( 6 )
+guard_stream = ExtResource( 7 )
 guard_sequence = [ 3, 1, 4, 0, 3, 1, 4, 0 ]
 challenger_sequence = [ 3, 1, 4, 0, 3, 1, 4, 0 ]
-challenger_streams = [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 5 ) ]
+challenger_streams = [ ExtResource( 6 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 9 ) ]

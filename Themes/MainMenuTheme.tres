@@ -28,7 +28,6 @@ texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 495, 270 )
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-modulate_color = Color( 1, 1, 1, 0.717647 )
 
 [resource]
 default_font = ExtResource( 5 )

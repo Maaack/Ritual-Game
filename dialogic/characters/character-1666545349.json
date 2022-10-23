@@ -1,0 +1,21 @@
+{
+	"color": "#ffff7e00",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1666545349.json",
+	"mirror_portraits": true,
+	"name": "Mazie",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -100,
+	"offset_y": -200,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://Assets/Original/Characters/Mazie.png"
+		}
+	],
+	"scale": 400,
+	"theme": ""
+}

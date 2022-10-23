@@ -6,5 +6,5 @@
 
 [resource]
 script = ExtResource( 3 )
-dialogic_timeline = "BeatboxBouncerRitual1-1"
+dialogic_timeline = "HeavyBouncerRitual1-2"
 rounds = [ ExtResource( 2 ), ExtResource( 1 ) ]
