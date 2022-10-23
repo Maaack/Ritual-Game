@@ -6,5 +6,5 @@ class_name BaseRitual
 export(String, FILE, "*.tscn") var return_to_scene : String
 
 
-func leave_ritual():	
+func leave_ritual():
 	SceneLoader.load_scene(return_to_scene)

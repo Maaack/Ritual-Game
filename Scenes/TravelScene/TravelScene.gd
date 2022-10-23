@@ -13,21 +13,13 @@ func _attach_signals():
 
 func _ready():
 	_attach_signals()
-	if RitualCooldownManager.bouncer_cooldown == true:
-		$CenterContainer/LocationContainer/Bouncer.start_timer()
-		RitualCooldownManager.bouncer_cooldown = false
-	if RitualCooldownManager.guard_cooldown == true:
-		$CenterContainer/LocationContainer/Guard.start_timer()
-		RitualCooldownManager.guard_cooldown = false
-	if RitualCooldownManager.guard2_cooldown == true:
-		$CenterContainer/LocationContainer/Guard2.start_timer()
-		RitualCooldownManager.guard2_cooldown = false
-	
 	GameLog.level_reached(0)
 	var player_level : int = GameLog.get_max_level_reached()
 	var location_container = get_node("%LocationContainer")
 	for child in location_container.get_children():
 		if child is LocationMarker:
+			if child.location_data == RitualCooldownManager.left_location:
+				child.start_timer()
 			var location_level = child.location_data.level
 			if location_level > player_level:
 				child.hide()

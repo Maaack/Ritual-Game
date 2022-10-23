@@ -60,7 +60,7 @@ func dialog_listener(string):
 			_start_challenge()
 			
 func leave_ritual():	
-	RitualCooldownManager.start_cooldown(location_data.name)
+	RitualCooldownManager.start_cooldown(location_data)
 	.leave_ritual()
 
 func score_beat(delta):
