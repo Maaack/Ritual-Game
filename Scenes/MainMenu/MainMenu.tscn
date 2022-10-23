@@ -294,7 +294,7 @@ anchor_bottom = 1.0
 theme = ExtResource( 4 )
 script = ExtResource( 1 )
 game_scene = "res://Scenes/TravelScene/TravelScene.tscn"
-version_name = "0.1.1"
+version_name = "1.0.0"
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.792157 )
