@@ -82,7 +82,7 @@ func play_next_in_sequence():
 func _record_wait_if_no_input():
 	if not is_processing_unhandled_key_input():
 		return
-	yield(get_tree().create_timer(INPUT_HOLD/2.0), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	if (not is_processing_unhandled_key_input()) or played_sequence.size() == 0:
 		return
 	_play_challenger_sound(KEYS.WAIT)

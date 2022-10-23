@@ -24,6 +24,7 @@ __meta__ = {
 mistake_sounds = [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
 [node name="AudioStreamConductor" parent="." instance=ExtResource( 2 )]
+volume_db = -8.0
 bus = "Music"
 
 [node name="GuardSFX" type="AudioStreamPlayer2D" parent="."]
