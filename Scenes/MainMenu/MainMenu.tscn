@@ -312,13 +312,6 @@ position = Vector2( 498, 280 )
 scale = Vector2( 4.27789, 4.27789 )
 texture = ExtResource( 9 )
 
-[node name="Sprite2" type="Sprite" parent="Panel/ParallaxBackground/ParallaxLayer"]
-visible = false
-position = Vector2( 498, 280 )
-scale = Vector2( 4.27789, 4.27789 )
-texture = ExtResource( 9 )
-offset = Vector2( -255, 0 )
-
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/CloseSubMenu = SubResource( 5 )
 anims/Intro = SubResource( 1 )
