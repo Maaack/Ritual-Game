@@ -81,7 +81,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0.1, 9.6 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
+"update": 1,
 "values": [ Color( 1, 1, 1, 0.160784 ), Color( 1, 1, 1, 1 ) ]
 }
 

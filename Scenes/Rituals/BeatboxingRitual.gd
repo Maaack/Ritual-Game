@@ -58,6 +58,10 @@ func dialog_listener(string):
 			leave_ritual()
 		"beatbox":
 			_start_challenge()
+			
+func leave_ritual():	
+	RitualCooldownManager.start_cooldown(location_data.name)
+	.leave_ritual()
 
 func score_beat(delta):
 	var feedback_node = get_node("%BigFeedback")
