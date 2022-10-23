@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MainMenu/MainMenuButtons.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Original/Music/Ritual_-_Main_Theme_1_-_ogg.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Themes/TitleFont48px.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Scenes/Credits/Credits.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Original/Sprites/Map.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=5]
 resource_name = "CloseSubMenu"
@@ -298,6 +299,25 @@ version_name = "0.1.1"
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Panel"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Panel/ParallaxBackground"]
+position = Vector2( -1, 0 )
+motion_mirroring = Vector2( 1100, 0 )
+
+[node name="Sprite" type="Sprite" parent="Panel/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 1, 1, 1, 0.611765 )
+position = Vector2( 498, 280 )
+scale = Vector2( 4.27789, 4.27789 )
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="Panel/ParallaxBackground/ParallaxLayer"]
+visible = false
+position = Vector2( 498, 280 )
+scale = Vector2( 4.27789, 4.27789 )
+texture = ExtResource( 9 )
+offset = Vector2( -255, 0 )
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/CloseSubMenu = SubResource( 5 )
