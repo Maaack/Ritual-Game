@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://Assets/Original/Characters/Robot_Gaurd.png"
+			"path": "res://Assets/Original/Characters/Crook.png"
 		}
 	],
 	"scale": 400,

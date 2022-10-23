@@ -5,7 +5,7 @@
 			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1666543759.json",
+			"character": "character-1666545349.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": true,
 			"portrait": "Default",
@@ -41,25 +41,25 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1666543759.json",
+			"character": "character-1666545349.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ey! Just where do you think you're going, eh?"
+			"text": "You've come a long way!"
 		},
 		{
 			"character": "character-1666060180.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Uh... inside..."
+			"text": "Your rituals are too easy."
 		},
 		{
-			"character": "character-1666543759.json",
+			"character": "character-1666545349.json",
 			"event_id": "dialogic_010",
 			"options": [
 
 			],
 			"portrait": "",
-			"question": "You want in? You gotta show me what you got. You know the deal..."
+			"question": "Come back tomorrow and get a higher score then."
 		},
 		{
 			"choice": "Beatbox",
@@ -77,7 +77,7 @@
 			"transition_duration": 1
 		},
 		{
-			"choice": "Nah...",
+			"choice": "Leave",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -97,7 +97,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1666059858.json",
-		"name": "BeatboxBouncerRitual1-1"
+		"file": "timeline-1666545411.json",
+		"name": "Mazie1-1"
 	}
 }

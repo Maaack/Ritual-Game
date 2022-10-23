@@ -1,11 +1,11 @@
 {
-	"color": "#ff9f0c40",
+	"color": "#ff0a00ae",
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
-	"id": "character-1666059727.json",
+	"id": "character-1666544401.json",
 	"mirror_portraits": false,
-	"name": "Heavy Bouncer",
+	"name": "Heavy Guard",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": -100,
@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://Assets/Original/Characters/Bouncer.png"
+			"path": "res://Assets/Original/Characters/Robot_Gaurd.png"
 		}
 	],
-	"scale": 500,
+	"scale": 400,
 	"theme": ""
 }

@@ -5,7 +5,7 @@
 			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1666543759.json",
+			"character": "character-1666059727.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": true,
 			"portrait": "Default",
@@ -41,28 +41,28 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1666543759.json",
+			"character": "character-1666059727.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ey! Just where do you think you're going, eh?"
+			"text": "Fine."
 		},
 		{
 			"character": "character-1666060180.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Uh... inside..."
+			"text": "Another round?"
 		},
 		{
-			"character": "character-1666543759.json",
+			"character": "character-1666059727.json",
 			"event_id": "dialogic_010",
 			"options": [
 
 			],
 			"portrait": "",
-			"question": "You want in? You gotta show me what you got. You know the deal..."
+			"question": "*He only nods*"
 		},
 		{
-			"choice": "Beatbox",
+			"choice": "I'm game",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -77,7 +77,7 @@
 			"transition_duration": 1
 		},
 		{
-			"choice": "Nah...",
+			"choice": "I'm done",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -97,7 +97,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1666059858.json",
-		"name": "BeatboxBouncerRitual1-1"
+		"file": "timeline-1666544003.json",
+		"name": "HeavyBouncerRitual1-2"
 	}
 }

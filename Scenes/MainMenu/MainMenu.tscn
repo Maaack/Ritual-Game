@@ -297,20 +297,9 @@ game_scene = "res://Scenes/TravelScene/TravelScene.tscn"
 version_name = "0.1.1"
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.792157 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Panel"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Panel/ParallaxBackground"]
-position = Vector2( -1, 0 )
-motion_mirroring = Vector2( 1100, 0 )
-
-[node name="Sprite" type="Sprite" parent="Panel/ParallaxBackground/ParallaxLayer"]
-modulate = Color( 1, 1, 1, 0.611765 )
-position = Vector2( 498, 280 )
-scale = Vector2( 4.27789, 4.27789 )
-texture = ExtResource( 9 )
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/CloseSubMenu = SubResource( 5 )
@@ -458,6 +447,18 @@ text = "Back"
 stream = ExtResource( 6 )
 autoplay = true
 bus = "Music"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -1, 0 )
+motion_mirroring = Vector2( 1100, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 1, 1, 1, 0.611765 )
+position = Vector2( 498, 280 )
+scale = Vector2( 4.27789, 4.27789 )
+texture = ExtResource( 9 )
 
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/TutorialButton" to="." method="_on_TutorialButton_pressed"]

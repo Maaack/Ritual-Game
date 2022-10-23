@@ -1,11 +1,11 @@
 {
-	"color": "#ff9f0c40",
+	"color": "#ffff0083",
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
-	"id": "character-1666059727.json",
-	"mirror_portraits": false,
-	"name": "Heavy Bouncer",
+	"id": "character-1666543759.json",
+	"mirror_portraits": true,
+	"name": "Bouncer",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": -100,
@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://Assets/Original/Characters/Bouncer.png"
+			"path": "res://Assets/Original/Characters/wraith.png"
 		}
 	],
-	"scale": 500,
+	"scale": 400,
 	"theme": ""
 }
