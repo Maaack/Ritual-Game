@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 name = "Beatboxing Guard 2"
 description = "Some extra description"
 ritual_scene_path = "res://Scenes/Rituals/BeatboxingGuardRitual.tscn"
-level = 1
+level = 2
