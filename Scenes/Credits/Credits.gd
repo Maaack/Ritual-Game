@@ -34,7 +34,7 @@ func regex_replace_urls(credits:String):
 
 func regex_replace_titles(credits:String):
 	var iter = 0
-	var heading_fonts : Array = [h1_font, h2_font, h3_font, h4_font]
+	var heading_fonts : Array = [h1_font, h1_font, h2_font, h3_font, h4_font]
 	for heading_font in heading_fonts:
 		if heading_font is DynamicFont:
 			iter += 1
